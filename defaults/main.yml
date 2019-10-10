@@ -2,7 +2,7 @@
 # defaults file for Ubuntu1804-CIS
 ubuntu1804cis_skip_for_travis: false
 
-ubuntu1804cis_notauto: false
+ubuntu1804cis_notauto: true
 ubuntu1804cis_section1: true
 ubuntu1804cis_section2: true
 ubuntu1804cis_section3: true
@@ -13,7 +13,7 @@ ubuntu1804cis_section6: true
 ubuntu1804cis_selinux_disable: false
 
 # Ignore remount errors if you're building an image or are going to reboot anyway
-ubuntu1804cis_ignore_remount_errors: false
+ubuntu1804cis_ignore_remount_errors: true
 
 # These variables correspond with the CIS rule IDs or paragraph numbers defined in
 # the CIS benchmark documents.
@@ -212,7 +212,7 @@ ubuntu1804cis_rule_5_4_3: true
 ubuntu1804cis_rule_5_4_4: true
 ubuntu1804cis_rule_5_4_5: true
 ubuntu1804cis_rule_5_5: true
-ubuntu1804cis_rule_5_6: false
+ubuntu1804cis_rule_5_6: true
 
 # Section 6 rules
 ubuntu1804cis_rule_6_1_1: true
@@ -287,13 +287,16 @@ ubuntu1804cis_rhnsd_required: false
 
 # 1.4.2 Bootloader password
 ubuntu1804cis_bootloader_password: random
-ubuntu1804cis_set_boot_pass: false
+ubuntu1804cis_set_boot_pass: true
+
+# 1.4.3 Root password
+ubuntu1804cis_root_password: random
 
 # System network parameters (host only OR host and router)
 ubuntu1804cis_is_router: false
 
 # IPv6 required
-ubuntu1804cis_ipv6_required: true
+ubuntu1804cis_ipv6_required: false
 
 # AIDE
 ubuntu1804cis_config_aide: true
@@ -349,7 +352,7 @@ ubuntu1804cis_firewall: firewalld
 
 ubuntu1804cis_firewall_services:
   - ssh
-  - dhcpv6-client
+#  - dhcpv6-client
 
 # Warning Banner Content (issue, issue.net, motd)
 ubuntu1804cis_warning_banner: |
@@ -371,7 +374,7 @@ ubuntu1804cis_sshd:
   macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
   logingracetime: 60
   ### Make sure you understand the precedence when working with these values!!
-  # allowusers:
+  allowusers: ubuntu
   # allowgroups: systems dba
   # denyusers:
   # denygroups:

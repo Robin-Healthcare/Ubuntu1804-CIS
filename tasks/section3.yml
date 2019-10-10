@@ -228,11 +228,14 @@
       - rule_3.3.2
 
 - name: "NOTSCORED | 3.3.3 | PATCH | Ensure IPv6 is disabled"
-  lineinfile:
-      dest: /etc/modprobe.d/CIS.conf
-      regexp: "^(#)?options ipv6 disable="
-      line: "options ipv6 disable=1"
-      create: true
+  replace:
+    dest: /etc/default/grub
+    regexp: '(^GRUB_CMDLINE_LINUX\s*\=\s*)(?:")(.*)(?<!ipv6\.disable=1)(?:")'
+    replace: '\1"\2 ipv6.disable=1"'
+    follow: true
+  ignore_errors: true
+  notify:
+      - generate new grub config
   when: not ubuntu1804cis_ipv6_required
   tags:
       - level1
